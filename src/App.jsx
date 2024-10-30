@@ -9,6 +9,7 @@ import Register from './pages/register/Register'
 import MyBlogs from './pages/myBlogs/MyBlogs'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Logout from './pages/login/Logout'
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/register" element={<Register />}/>
         <Route path="/blogs/:idblog" element={<VerBlog />}/>
         <Route path="/perfil" element={<MyBlogs />}/>
+        <Route path="/logout" element={<Logout />}/>
       </Routes>
       <Footer/>
     </BrowserRouter>
