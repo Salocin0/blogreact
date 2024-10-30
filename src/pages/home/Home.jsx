@@ -1,8 +1,8 @@
 import {newsMock} from "../../mocks/newsMock"
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import Blog from "./Blog"
 const Home = () => {
-    const [blogs, setBlogs] = useState(newsMock)
+    const [blogs] = useState(newsMock)
     console.log(blogs)
 
     return(

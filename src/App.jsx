@@ -7,9 +7,12 @@ import VerBlog from './pages/blogs/verBlog/VerBlog'
 import Login from './pages/login/login'
 import Register from './pages/register/Register'
 import MyBlogs from './pages/myBlogs/MyBlogs'
+import Header from './components/Header'
+import Footer from './components/Footer'
 function App() {
   return (
     <BrowserRouter>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/crear-blog" element={<CrearBLog />}/>
@@ -20,6 +23,7 @@ function App() {
         <Route path="/blogs/:idblog" element={<VerBlog />}/>
         <Route path="/perfil" element={<MyBlogs />}/>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   )
 }

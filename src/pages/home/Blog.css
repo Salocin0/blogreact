@@ -1,0 +1,30 @@
+.contenedor{
+    background-color: grey;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.img{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.datos{
+    padding: 10px;
+}
+
+.subdatos{
+    display: flex;
+    flex-direction: row;
+}
+
+.autor{
+    padding-right: 20px;
+    font-weight: bold;
+}
