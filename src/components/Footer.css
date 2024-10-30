@@ -1,0 +1,45 @@
+.footer{
+    background-color: #323232;
+    color: white;
+    text-align: "center";
+}
+
+.enlaces{
+    display: flex;
+    flex-direction: column;
+}
+
+.listaEnlaces{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.listItem{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+}
+
+.mensaje{
+    margin: 0;
+    padding: 10px;
+}
+
+.titulo{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
