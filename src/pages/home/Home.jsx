@@ -1,15 +1,33 @@
-import {newsMock} from "../../mocks/newsMock"
-import { useState } from "react"
-import Blog from "./Blog"
+import { newsMock } from "../../mocks/newsMock";
+import { useEffect, useState } from "react";
+import Blog from "./Blog";
 const Home = () => {
-    const [blogs] = useState(newsMock)
-    console.log(blogs)
+  const [blogs] = useState(newsMock);
+  console.log(blogs);
 
-    return(
-        <div>
-            {blogs.map((blog)=>(<Blog blog={blog} key={blog.source.id}/>))}
-        </div>
-    )
-}
+  useEffect(() => {
+    const fetchback = async () => {
+      const response = await fetch( "http://localhost:3000/productos",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({})
+      });
+      const data = await response.json();
+      console.log(data);
+    }
 
-export default Home
+    fetchback()
+  },[])
+
+  return (
+    <div>
+      {blogs.map((blog) => (
+        <Blog blog={blog} key={blog.source.id} />
+      ))}
+    </div>
+  );
+};
+
+export default Home;
