@@ -51,3 +51,17 @@ alert("hola mundo")
 
 - [ ] check
 
+>[!NOTE]
+>NOTA ESPECIAL
+
+>[!TIP]
+>NOTA ESPECIAL
+
+>[!IMPORTANT]
+>NOTA ESPECIAL
+
+>[!WARNING]
+>NOTA ESPECIAL
+
+>[!CAUTION]
+>NOTA ESPECIAL
