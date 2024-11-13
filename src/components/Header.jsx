@@ -7,7 +7,7 @@ const links = [{ to: "/", label: "Inicio" }];
 
 const loggedLinks = [
   { to: "/crear-blog", label: "Nuevo Blog", className: "link-end" },
-  { to: "/mis-blog", label: "Mis Blogs", className: "link-end" },
+  { to: "/mis-blogs", label: "Mis Blogs", className: "link-end" },
   { to: "/logout", label: "Cerrar sesión", className: "link-end" },
 ];
 

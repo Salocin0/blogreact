@@ -1,16 +1,22 @@
 import { useParams } from "react-router-dom"
-import { useState } from "react"
-import { newsMock } from "../../../mocks/newsMock"
+import { useState,useEffect } from "react"
 import DetalleBlog from "./DetalleBlog"
 const VerBlog = () => {
-    //con el id buscar el blog que hay que mostrar
     const {idblog} = useParams()
 
-    const [blogs] = useState(newsMock)
+    const [blog,setBlog] = useState({})
     
-    const blog = blogs[idblog-1] // array empieza en 0 y el id en 1
-    console.log(blog)
-    //console.log(blogs.filter((blog)=>{blog.source.id===idblog}))
+    useEffect(() => {
+        const fetchback = async () => {
+          const response = await fetch( `http://localhost:3000/blogs/${idblog}`);
+          const data = await response.json();
+          setBlog(...data.data) //llega en forma de array y hay que aplicar spread
+          console.log(...data.data);
+        }
+    
+        fetchback()
+      },[idblog])
+
     return (
         <DetalleBlog blog={blog}/>
     )

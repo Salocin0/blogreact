@@ -1,13 +1,14 @@
-import "./Blog.css";
+import "../home/Blog.css";
 import { useNavigate } from "react-router-dom";
-const Blog = ({ blog }) => {
+const MyBlog = ({ blog,handleDelete }) => {
     const navigate = useNavigate()
-  const hanldeClick =() =>{
-    navigate(`/blogs/${blog.id}`)
-  }
-    
+
+    const handleUpdate = async (id) => {
+      navigate(`/modificar-blog/${id}`)
+    }
+
   return (
-    <div className="contenedor" onClick={hanldeClick}>
+    <div className="contenedor">
       <img src={blog.imagen} alt={blog.descripcion} className="img" />
       <div className="datos">
         <h2 className="titulo">{blog.titulo}</h2>
@@ -18,9 +19,11 @@ const Blog = ({ blog }) => {
           </p>
         </div>
         <p className="descripcion">{blog.descripcion}</p>
+        <button onClick={() => handleDelete(blog.id)}>Borrar</button>
+        <button onClick={() => handleUpdate(blog.id)}>Modificar</button>
       </div>
     </div>
   );
 };
 
-export default Blog;
+export default MyBlog;

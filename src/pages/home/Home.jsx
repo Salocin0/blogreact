@@ -1,30 +1,25 @@
-import { newsMock } from "../../mocks/newsMock";
-import { useEffect, useState } from "react";
+
+import { useEffect,useState } from "react";
 import Blog from "./Blog";
+const backurl = import.meta.env.VITE_BACK_URL;
 const Home = () => {
-  const [blogs] = useState(newsMock);
-  console.log(blogs);
+  const [blogs,setBlogs] = useState([]);
 
   useEffect(() => {
     const fetchback = async () => {
-      const response = await fetch( "http://localhost:3000/productos",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({})
-      });
+      const response = await fetch( "http://localhost:3000/blogs");
       const data = await response.json();
-      console.log(data);
+      setBlogs(data.data)
+      console.log(data.data);
     }
 
     fetchback()
   },[])
-
+  console.log(backurl)
   return (
     <div>
       {blogs.map((blog) => (
-        <Blog blog={blog} key={blog.source.id} />
+        <Blog blog={blog} key={blog.id} />
       ))}
     </div>
   );

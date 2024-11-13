@@ -5,20 +5,21 @@ const DetalleBlog = ({ blog }) => {
   const hanldeClick = () => {
     navigate(`/`);
   };
+  console.log(blog)
 
   return (
     <>
       <div className="contenedorDetalle">
-        <img src={blog.urlToImage} alt={blog.description} className="img" />
+        <img src={blog.imagen} alt={blog.descripcion} className="img" />
         <div className="datos">
-          <h2 className="titulo">{blog.title}</h2>
+          <h2 className="titulo">{blog.titulo}</h2>
           <div className="subdatos">
-            <p className="autor">{blog.author}</p>
+            <p className="autor">{blog.author || "autor por defecto"}</p>
             <p className="fecha">
-              {new Date(blog.publishedAt).toLocaleString("es")}
+              {new Date(blog.fechaPublicacion).toLocaleString("es")}
             </p>
           </div>
-          <p className="descripcion">{blog.content}</p>
+          <p className="descripcion">{blog.contenido}</p>
         </div>
       </div>
       <div>
