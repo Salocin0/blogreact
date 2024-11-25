@@ -10,6 +10,7 @@ import MyBlogs from './pages/myBlogs/MyBlogs'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Logout from './pages/login/Logout'
+import MisProductos from './pages/productosPaginados/MisProductos'
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/crear-blog" element={<CrearBLog />}/>
         <Route path="/modificar-blog/:idblog" element={<ModificarBLog />}/>
         <Route path="/mis-blogs/" element={<MyBlogs />}/>
+        <Route path="/productos-paginados/" element={<MisProductos />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/blogs/:idblog" element={<VerBlog />}/>
