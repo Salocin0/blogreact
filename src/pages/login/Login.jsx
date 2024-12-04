@@ -6,13 +6,32 @@ const Login = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
-  const { setIsLogged } = useContext(AuthContext);
+  const { setIsLogged,setAccessToken,setRefreshToken } = useContext(AuthContext);
 
+  const FetchBackLogin= async () => {
+    const data = {
+      username: user,
+      password: pass
+    }
+    const response = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+    if (response.ok) {
+      const responsejson = await response.json();
+      const {accessToken,refreshToken} = responsejson.data
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
+      setIsLogged(true);
+      navigate("/");
+    }else{
+      console.log("Error", await response.json());
+    }
+  }
   const handleLogin = (e) => {
     e.preventDefault();
-    //authlogin setear en true
-    setIsLogged(true);
-    navigate("/");
+    FetchBackLogin();
   };
 
   return (

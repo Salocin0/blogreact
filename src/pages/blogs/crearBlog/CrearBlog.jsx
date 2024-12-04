@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CrearBlog.css";
 const backurl = import.meta.env.VITE_BACK_URL;
+import { useContext } from "react";
+import { AuthContext } from "./../../../context/AuthContext";
 
 const CrearBLog = () => {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ const CrearBLog = () => {
   const [descripcion, setDescripcion] = useState("");
   const [contenido, setContenido] = useState("");
   const [imagen, setImagen] = useState("");
+  const { accessToken,FetchBackGetRefreshToken } = useContext(AuthContext);
 
   useEffect(() => {
     console.log(titulo, descripcion, contenido, imagen);
@@ -22,9 +25,21 @@ const CrearBLog = () => {
       contenido: contenido,
       imagen: imagen,
     };
-    await fetchback(blog);
+    const respuesta = await fetchback(blog);
     console.log(blog);
-    navigate("/mis-blogs/");
+    if (respuesta == -1) {
+      FetchBackGetRefreshToken();
+      const respuesta = await fetchback(blog);
+      if(respuesta == -1){
+        navigate("/logout/");
+      }
+    }
+    if (respuesta == -2) {
+      alert("Error al crear el blog");
+    }
+    if (respuesta !== -1 && respuesta !== -2) {
+      navigate("/mis-blogs/");
+    }
   };
   const handleVolver = () => {
     navigate("/mis-blogs/");
@@ -34,10 +49,19 @@ const CrearBLog = () => {
     const response = await fetch(`${backurl}blogs/`, {
       method: "POST",
       body: JSON.stringify(blog),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: accessToken,
+      },
     });
     const data = await response.json();
-    console.log(data);
+    if (response.ok) {
+      return data;
+    } else if (response.status === 401) {
+      return -1;
+    } else {
+      return -2;
+    }
   };
 
   return (

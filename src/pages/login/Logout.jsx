@@ -5,9 +5,11 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Logout = () => {
   const navigate = useNavigate();
-  const { setIsLogged } = useContext(AuthContext);
+  const { setIsLogged,setAccessToken,setRefreshToken} = useContext(AuthContext);
   useEffect(() => {
     setIsLogged(false);
+    setAccessToken(null);
+    setRefreshToken(null);
     navigate("/");
   });
   return <></>;
